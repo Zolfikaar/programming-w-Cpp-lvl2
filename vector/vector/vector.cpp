@@ -3,36 +3,62 @@
 
 using namespace std;
 
-void ReadNumber(vector <int> & vNumbers)
+struct stEmployees {
+    string firstName;
+    string lastName;
+    float salary;
+};
+
+void EnterEmployeeInfo(vector <stEmployees> & vEmployee)
 {
-    char EnterNewNumber = 'Y';
-    int Number;
+    char EnterNewEmployee = 'Y';
+    
+    stEmployees tempEmployee;
 
-    while (EnterNewNumber == 'Y' || EnterNewNumber == 'y') {
-        cout << "Please Enter a Number:\n";
-        cin >> Number;
+    cout << "Please Enter Employee Info:\n";
 
-        vNumbers.push_back(Number);
+    while (EnterNewEmployee == 'Y' || EnterNewEmployee == 'y') {
 
-        cout << "Do you want to add another number? Y/N" << endl;
-        cin >> EnterNewNumber;
+        cout << "Employee First Name: ";
+        cin >> tempEmployee.firstName;
+
+        cout << "Employee Last Name: ";
+        cin >> tempEmployee.lastName;
+
+        cout << "Employee Salary: ";
+        cin >> tempEmployee.salary;
+
+
+        vEmployee.push_back(tempEmployee);
+
+
+        cout << "Do you want to add another employee? Y/N" << endl;
+        cin >> EnterNewEmployee;
+
     }
-
     
 }
 
-void PrintvNumbers(vector <int> & vNumbers)
+void PrintEmployeesInfo(vector <stEmployees> & vEmployee)
 {
-    cout << "items in vector: \n";
-    for (int num : vNumbers)
-        cout << num << endl;
+    cout << "Vector of Structure of Employees:\n";
+    cout << "==================================\n";
+    for (stEmployees & employee : vEmployee) {
+        cout << "----------------------------------\n";
+        cout << "First Name : " << employee.firstName << endl;
+        cout << "Last Name  : " << employee.lastName << endl;
+        cout << "Salary     : " << employee.salary << endl;
+        cout << "----------------------------------\n";
+    }
+    cout << "==================================\n";
 }
 
 int main()
 {
-    vector <int> vNumbers;
-    ReadNumber(vNumbers);
+    vector <stEmployees> vEmployee;
 
-    PrintvNumbers(vNumbers);
+    EnterEmployeeInfo(vEmployee);
+
+    PrintEmployeesInfo(vEmployee);
 
 }
